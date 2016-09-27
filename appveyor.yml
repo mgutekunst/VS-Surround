@@ -1,0 +1,30 @@
+version: 0.0.{build}-{branch}
+
+pull_requests:
+
+  do_not_increment_build_number: true
+
+branches:
+
+  only:
+
+  - master
+
+configuration: Release
+
+install: 
+
+- ps: (new-object Net.WebClient).DownloadString("https://raw.github.com/madskristensen/ExtensionScripts/master/AppVeyor/vsix.ps1") | iex
+
+before_build:
+
+- ps: nuget restore
+
+build:
+
+  verbosity: minimal
+
+after_test:
+
+# - Vsix-PushArtifacts | Vsix-PublishToGallery
+- Vsix-PushArtifacts
