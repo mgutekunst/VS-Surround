@@ -27,4 +27,4 @@ build:
 after_test:
 
 # - Vsix-PushArtifacts | Vsix-PublishToGallery
-- Vsix-PushArtifacts
+- ps: Vsix-PushArtifacts
